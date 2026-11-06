@@ -1,4 +1,4 @@
-# SEO + AEO Master Spec · تعليمات الذكاء الاصطناعي الشاملة لتحسين محركات البحث و ومحركات الإجابة للذكاء الاصطناعي
+# SEO + AEO Master Spec · المواصفة الشاملة لتحسين محركات البحث والإجابة
 
 **English** · [العربية](#بالعربية)
 
@@ -22,14 +22,6 @@ An open, bilingual (English + Arabic) specification that AI coding agents and hu
 | Toolkit | §28 page templates · §29 framework recipes (Laravel, Next.js, Nuxt, WordPress, Astro, SvelteKit, React Router, SPA, static) · §30 verification kit · §31 SEO & AEO scoring · §32 operations & governance |
 | Audit & reference | §33 glossary · §34 maintenance · §35 site blueprint (essential pages, page sections, root files, head tags, HTTP, platform settings, audit report) · §36 special cases (SaaS, faceted navigation, expired content, PDFs, UGC, subdomains, apps) · §37 definition of done |
 
-## Install as a skill
-
-Clone this repository into your agent’s skills directory (for example `~/.codex/skills/seo-aeo-master-spec` for Codex or `~/.claude/skills/seo-aeo-master-spec` for Claude Code). The root `SKILL.md` is the entry point; keep the specification and scripts beside it. For ChatGPT, attach the specification and ask it to follow it; changing website code requires a connected development environment.
-
-```bash
-git clone https://github.com/ibadwi/SEO-AEO-MASTER-SPEC-SKILL.git ~/.codex/skills/seo-aeo-master-spec
-```
-
 ## How to use
 
 **With an AI coding agent (Claude Code, Cursor, GitHub Copilot, Codex, Windsurf, …)**
@@ -49,10 +41,10 @@ git clone https://github.com/ibadwi/SEO-AEO-MASTER-SPEC-SKILL.git ~/.codex/skill
 
 ```bash
 python3 scripts/seo_audit.py https://example.com/sitemap.xml
-python3 scripts/seo_audit.py https://example.com/sitemap.xml --map https://example.com=https://staging.example.com --json report.json
+python3 scripts/seo_audit.py https://example.com/sitemap.xml --map https://example.com=https://staging.example.com --insecure --json report.json
 ```
 
-Python 3.9+, standard library only. Checks status, title, description, H1, canonical, hreflang (self, x-default, return links), `lang`/`dir`, JSON-LD validity and deprecated types, Open Graph/Twitter, images, HTML size and duplicates. Exit code `1` when any Critical issue exists. Requests are paced globally at 2 per second by default (`--rate 2`), independently of `--workers`. TLS verification is always enabled. Respect robots.txt and audit only authorized URLs. Numeric length checks are heuristics; this script does not verify rankings, AI citations, JavaScript rendering, or full schema validity.
+Python 3.9+, standard library only. Checks status, title, description, H1, canonical, hreflang (self, x-default, return links), `lang`/`dir`, JSON-LD validity and deprecated types, Open Graph/Twitter, images, HTML size and duplicates. Exit code `1` when any Critical issue exists. Use `--workers 2` or lower on sites you don't own.
 
 ## Principles
 
@@ -75,17 +67,11 @@ MIT — see [LICENSE](LICENSE). The original audit knowledge base was derived fr
 
 ## بالعربية
 
-تعليات توجيه وتوصيف مفتوحة المصدر ثنائية اللغة (عربي + إنجليزي) تمكن وكلاء البرمجة بالذكاء الاصطناعي والبشر **لتنفيذ** أو **تدقيق** تحسين محركات البحث (SEO) وتحسين محركات الإجابة (AEO) في أي موقع: السيو التقني، والمحتوى، والبيانات المنظمة، والعربية وRTL وكل اللغات، ومحركات البحث بالذكاء الاصطناعي، والسلطة خارج الموقع، ونقل المواقع، والخصوصية، والقوالب، والتحقق، والدرجات.
+مواصفة مفتوحة المصدر ثنائية اللغة (عربي + إنجليزي) يتبعها وكلاء البرمجة بالذكاء الاصطناعي والبشر **لتنفيذ** أو **تدقيق** تحسين محركات البحث (SEO) وتحسين محركات الإجابة (AEO) في أي موقع: السيو التقني، والمحتوى، والبيانات المنظمة، والعربية وRTL وكل اللغات، ومحركات البحث بالذكاء الاصطناعي، والسلطة خارج الموقع، ونقل المواقع، والخصوصية، والقوالب، والتحقق، والدرجات.
 
 - ملف واحد [`SEO-AEO-MASTER-SPEC.md`](SEO-AEO-MASTER-SPEC.md): كل متطلب بالإنجليزية وتحته مباشرة النسخة العربية، ومربع اختيار واحد لكل متطلب، ووسوم خطورة `[C]` `[H]` `[M]` `[L]` `[I]`.
 - **وضع التدقيق** (§0) و**مخطط الموقع** (§35): الصفحات وأقسام الصفحات وملفات الجذر ووسوم head وإعدادات HTTP والمنصات التي يحتاجها كل موقع — لمراجعة أي موقع وإخباره بدقة بما ينقصه أو ما هو خاطئ.
 - سكربت فحص بلا اعتماديات [`scripts/seo_audit.py`](scripts/seo_audit.py) يفحص كل روابط خريطة الموقع ويُفشل CI عند المشكلات الحرجة.
-
-### التثبيت كمهارة
-
-انسخ المستودع إلى مجلد مهارات وكيلك؛ مثل `~/.codex/skills/seo-aeo-master-spec` لـ Codex أو `~/.claude/skills/seo-aeo-master-spec` لـ Claude Code. ملف `SKILL.md` هو نقطة الدخول، ويجب إبقاء المواصفة والسكربتات بجواره. في ChatGPT أرفق المواصفة واطلب اتباعها؛ تعديل كود موقع يحتاج بيئة تطوير متصلة.
-
-السكربت يحدد افتراضيًا طلبين في الثانية عبر جميع العمال (`--rate 2`)، ويتحقق دائمًا من شهادة TLS. احترم robots.txt وافحص الروابط المصرح بها فقط. حدود أطوال النصوص إرشادية، والسكربت لا يتحقق من الترتيب أو اقتباسات الذكاء الاصطناعي أو عرض JavaScript أو صحة المخططات بالكامل.
 
 ### طريقة الاستخدام
 
