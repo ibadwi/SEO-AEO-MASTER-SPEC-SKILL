@@ -753,8 +753,8 @@ Capture a baseline of key templates before deploy; compare after. Fail the relea
 
 ## 19. Measurement (owner tasks — list them in the report) · القياس (مهام المالك — اذكرها في التقرير)
 
-- [ ] Verify the site in Google Search Console and Bing Webmaster Tools; submit sitemaps; keep the Search Console generative-AI setting so the site stays included in AI Overviews/AI Mode (opting out removes those impressions and visits).
-  - توثيق الموقع في Google Search Console وBing Webmaster Tools؛ إرسال خرائط الموقع؛ إبقاء إعداد الذكاء الاصطناعي التوليدي في Search Console على السماح بظهور الموقع في AI Overviews / AI Mode (إلغاؤه يحذف الظهور والزيارات منها).
+- [ ] Verify the site in Google Search Console and Bing Webmaster Tools; submit sitemaps. Manage Google Search AI-feature access through Googlebot and page-level indexing/snippet controls (§22.6), following the official sources in §34.2.
+  - وثّق الموقع في Google Search Console وBing Webmaster Tools، وأرسل خرائط الموقع. أدر وصول ميزات الذكاء الاصطناعي في بحث Google عبر Googlebot وضوابط الفهرسة والمقتطفات على مستوى الصفحة (§22.6)، وفق المصادر الرسمية في §34.2.
 - [ ] Analytics (GA4/Matomo/etc.) with organic segmentation; consent-compliant.
   - أداة تحليلات (GA4/Matomo/غيرها) مع تقسيم الزيارات العضوية؛ ومتوافقة مع متطلبات موافقة المستخدم (ملفات الارتباط).
 - [ ] Monitor Core Web Vitals (field data), indexing coverage, and indexed-count vs intended-count monthly.
@@ -993,6 +993,13 @@ Goal: be the source answer engines quote — Google featured snippets, People Al
   - برنامج تحديث: راجع صفحات الإجابة الأهم كل 3–6 أشهر؛ حدّث الحقائق و`dateModified` فقط عند تغييرات حقيقية (لا حداثة مزيفة أبداً).
 - [ ] llms.txt (optional, §17) lists the facts page, glossary, key reports and docs.
   - llms.txt (اختياري، §17) يدرج صفحة الحقائق والمسرد والتقارير الأساسية والتوثيق.
+
+- [ ] For Google AI Overviews / AI Mode, the page must be indexed and eligible for a search snippet. No special schema.org type, AI text file or additional markup is required; `llms.txt` remains optional (§17). Meeting requirements does not guarantee crawling, indexing or inclusion. See [Google AI features and your website](https://developers.google.com/search/docs/appearance/ai-features).
+  - للظهور في AI Overviews / AI Mode من Google، يجب أن تكون الصفحة مفهرسة ومؤهلة لعرض مقتطف في البحث. لا يلزم نوع خاص من schema.org ولا ملف نصي للذكاء الاصطناعي ولا ترميز إضافي؛ ويظل `llms.txt` اختيارياً (§17). استيفاء المتطلبات لا يضمن الزحف أو الفهرسة أو الظهور. راجع [ميزات الذكاء الاصطناعي وموقعك الإلكتروني من Google](https://developers.google.com/search/docs/appearance/ai-features).
+- [ ] Choose Google Search controls deliberately: Googlebot robots.txt rules manage crawling; `nosnippet` prevents snippets, `max-snippet` limits their length, `data-nosnippet` excludes selected page sections, and `noindex` excludes the page from Search. Google-Extended controls certain other Google AI uses, not Search inclusion (§1.1). Do not block crawling when Googlebot needs to read an indexing or snippet directive.
+  - اختر ضوابط بحث Google عن قصد: قواعد Googlebot في robots.txt تدير الزحف؛ و`nosnippet` يمنع المقتطفات، و`max-snippet` يحد طولها، و`data-nosnippet` يستبعد أقساماً محددة، و`noindex` يستبعد الصفحة من البحث. يتحكم Google-Extended في استخدامات أخرى محددة للذكاء الاصطناعي لدى Google، ولا يتحكم بالظهور في البحث (§1.1). لا تمنع الزحف عندما يحتاج Googlebot إلى قراءة توجيه فهرسة أو مقتطف.
+- [ ] Verify preview controls with Search Console URL Inspection: inspect the HTML Googlebot received and confirm the intended directives are present and correct. After changes, allow recrawling and processing (days to months); request recrawling where appropriate. If problems persist after these checks, consult the Google Search Central Help Community. Record the URL, directive, inspection date and result in the audit evidence (§30, §35.7).
+  - تحقّق من ضوابط المعاينة بأداة فحص عنوان URL في Search Console: افحص HTML الذي تلقاه Googlebot وتأكد من وجود التوجيهات المطلوبة وصحتها. بعد التعديل، انتظر إعادة الزحف والمعالجة (قد تستغرق أياماً إلى أشهر)، واطلب إعادة الزحف عند الحاجة. إذا استمرت المشكلة بعد التحقق، راجع منتدى مساعدة Google Search Central. سجّل الرابط والتوجيه وتاريخ الفحص ونتيجته ضمن أدلة التدقيق (§30، §35.7).
 
 ### 22.7 Voice & conversational search · البحث الصوتي والمحادثي
 
@@ -1939,7 +1946,9 @@ Score after every audit and after every major release; store the scores with the
 
 ## 34. Keeping this spec current · صيانة هذه المواصفة
 
-**Last verified · آخر تحقق:** 2026-11 · **Version · الإصدار:** 1.2
+**Last verified · آخر تحقق:** 2026-11-17 (Google AI-feature guidance in §19, §22.6, §35.6; other topics retain their prior verification scope) · **Version · الإصدار:** 1.3
+
+آخر تحقق بتاريخ 2026-11-17 لإرشادات ميزات Google للذكاء الاصطناعي في §19 و§22.6 و§35.6؛ وتحتفظ بقية الموضوعات بنطاق التحقق السابق.
 
 ### 34.1 Re-verify every quarter · أعد التحقق كل ربع سنة
 - [ ] Core Web Vitals metrics and thresholds (§7).
@@ -1959,6 +1968,15 @@ Score after every audit and after every major release; store the scores with the
 Google Search Central (developers.google.com/search) · Google Search Status Dashboard (status.search.google.com) · web.dev (Core Web Vitals) · Bing Webmaster Tools and guidelines (bing.com/webmasters) · schema.org releases · IndexNow (indexnow.org) · the crawler documentation of OpenAI, Anthropic, Perplexity and Apple · W3C Internationalization (w3.org/International) · WCAG 2.2 (w3.org/WAI) · Lighthouse documentation. When sources conflict, the official documentation wins over blogs and third-party tools.
 المصادر: Google Search Central، ولوحة حالة بحث Google، وweb.dev، وBing Webmaster Tools، وإصدارات schema.org، وIndexNow، وتوثيق زواحف OpenAI وAnthropic وPerplexity وApple، وW3C Internationalization، وWCAG 2.2، وتوثيق Lighthouse. وعند التعارض، المصدر الرسمي هو المرجع وليس المدونات أو أدوات الطرف الثالث.
 
+Selected direct references (alongside the sources above; each governs its own scope) · مراجع مباشرة مختارة (إلى جانب المصادر أعلاه؛ كل مرجع ضمن نطاقه):
+
+- [Google: AI features and your website · ميزات الذكاء الاصطناعي وموقعك الإلكتروني](https://developers.google.com/search/docs/appearance/ai-features) — eligibility, controls, measurement · الأهلية والضوابط والقياس.
+- [Google: robots meta and snippet controls · ضوابط الفهرسة والمقتطفات](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag).
+- [Google: crawler documentation, including Google-Extended · توثيق الزواحف ومنها Google-Extended](https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers).
+- [Bing Webmaster Guidelines · إرشادات مشرفي المواقع من Bing](https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a).
+- [Schema.org documentation · توثيق Schema.org](https://schema.org/docs/documents.html).
+- [W3C Internationalization · التدويل من W3C](https://www.w3.org/International/).
+
 ### 34.3 Update rules · قواعد التحديث
 - [ ] When a fact changes: update the item in **both** languages, update "Last verified", and add a changelog line. Mark third-party observations as *heuristic*.
   - عند تغيّر حقيقة: حدّث البند **باللغتين**، وحدّث "آخر تحقق"، وأضف سطراً لسجل التغييرات. وعلّم ملاحظات الأطراف الثالثة بأنها *إرشادية*.
@@ -1971,6 +1989,7 @@ Google Search Central (developers.google.com/search) · Google Search Status Das
 |---|---|---|
 | 1.0 | 2026-11 | Merged extended EN/AR spec + LLM optimization guide into one bilingual file · دمج المواصفة الموسّعة ودليل تحسين النماذج في ملف واحد ثنائي اللغة |
 | 1.1 | 2026-11 | Added Start here, §23–§34 (definition of done renumbered): off-site authority, per-engine AEO, migrations, more search surfaces, privacy, templates, framework recipes, verification kit, scoring, operations, glossary, maintenance · إضافة "ابدأ من هنا" والأقسام 23–34 |
+| 1.3 | 2026-11-17 | Completed Google AI-feature eligibility and preview-control verification; corrected the unsupported Search Console generative-AI setting claim in §19 and §35.6; added direct references while retaining the existing sources · استكمال أهلية ميزات Google والتحقق من ضوابط المعاينة وتصحيح ادعاء إعداد الذكاء الاصطناعي في Search Console وإضافة مراجع مباشرة مع الإبقاء على المصادر السابقة |
 | 1.2 | 2026-11 | Public release: fact-check against primary sources (≈150 corrections), audit mode in §0, §35 site blueprint (pages, sections, files, head, HTTP, platform settings, audit report), §36 special cases, script fixes (gzip sitemaps, SVG titles, multi-value headers, charsets, RTL ranges, retired types as Low); definition of done → §37 · إصدار عام: تدقيق الحقائق، ووضع التدقيق، ومخطط الموقع §35، والحالات الخاصة §36، وإصلاحات السكربت |
 
 ---
@@ -2104,8 +2123,8 @@ Use this section to audit **any** website (with or without its source code) and 
 
 ### 35.6 Accounts & platform settings · الحسابات وإعدادات المنصات
 
-- [ ] **Google Search Console:** Domain property verified by DNS; sitemap index submitted; owners/users reviewed; email alerts on; check Page indexing, Core Web Vitals, HTTPS, Manual actions, Security issues, Crawl stats and AI-related controls monthly. [C]
-  - **Google Search Console:** خاصية النطاق موثّقة عبر DNS؛ وفهرس خريطة الموقع مُرسل؛ والمالكون والمستخدمون مراجعون؛ والتنبيهات مفعّلة؛ ومراجعة الفهرسة وCWV وHTTPS والإجراءات اليدوية والمشكلات الأمنية وإحصاءات الزحف وضوابط الذكاء الاصطناعي شهرياً. [C]
+- [ ] **Google Search Console:** Domain property verified by DNS; sitemap index submitted; owners/users reviewed; email alerts on; check Page indexing, Core Web Vitals, HTTPS, Manual actions, Security issues, Crawl stats monthly; verify Googlebot access and page-level indexing/snippet controls separately (§22.6). [C]
+  - **Google Search Console:** خاصية النطاق موثّقة عبر DNS؛ وفهرس خريطة الموقع مُرسل؛ والمالكون والمستخدمون مراجعون؛ والتنبيهات مفعّلة؛ ومراجعة الفهرسة وCWV وHTTPS والإجراءات اليدوية والمشكلات الأمنية وإحصاءات الزحف شهرياً؛ والتحقق منفصلاً من وصول Googlebot وضوابط الفهرسة والمقتطفات على مستوى الصفحة (§22.6). [C]
 - [ ] **Bing Webmaster Tools:** imported or verified, sitemap submitted, IndexNow active. [H]
   - **Bing Webmaster Tools:** مستورد أو موثّق، وخريطة الموقع مرسلة، وIndexNow مفعّل. [H]
 - [ ] **Analytics:** consent-aware setup (§27), internal-traffic filter, cross-domain where needed, Search Console link, a custom channel or segment for AI referrers (§22.9), maximum data retention allowed by policy.
